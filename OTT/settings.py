@@ -26,7 +26,7 @@ SECRET_KEY = '#plsma#^e29q&+bflx(!b)3(=sg5ro5#bzs@%iirs(&rf)y-f='
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_URL = "/login"
 
 # Application definition
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'thumbnails',
+    'thumbnails','star_ratings', 'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'OTT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'django.core.context_processors.request',
+                
             ],
         },
     },

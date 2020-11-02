@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load ratings %}
+<div class = 'row text-center' >
+    <div class = 'col'>
+        <h1>Welcome to OTT</h1>
+    </div>
+</div>
+
+<div class= 'row' id = "thumbnails">
+    Loading...
+</div>
+
+<script>
+    const movieEle = document.getElementById("thumbnails")
+    movieEle.innerHTML = "Load..."
+
+function handleCount(id, count){
+    count++;
+}
+
+function likeBtn(thumbnails){
+    return "<button type='button' class='btn btn-danger' on_click=handleCount("+thumbnails.id + "," + thumbnails.likes+")>"+ thumbnails.likes +"Like</button>"
+}
+
+function format_element(thumbnails){
+    //console.log(thumbnails.content)
+    var total_str = "<div class = 'col-12 col-md-10 mx-auto border-bottom py-5' 'mb-4'>"+ "<p>" + thumbnails.title + "</p>"+"<p>" + thumbnails.content + "</p>" + "<p>" + thumbnails.genre + "</p><div class='btn-group'>" +likeBtn(thumbnails) + "</div></div>"
+    return total_str         
+}
+
+
+    const xhr = new XMLHttpRequest()
+    const method = 'GET'
+    const url = 'all'
+    const responseType = "json"
+
+    xhr.responseType = responseType
+    xhr.open(method, url)
+    xhr.onload = function(){
+        const serverResponse = xhr.response
+        var listed_items = serverResponse.op
+        var finalstr = " "
+        var i 
+        for(i=0;i<listed_items.length;i++){
+            var curr_item = format_element(listed_items[i])
+               finalstr+=curr_item
+        }
+        movieEle.innerHTML = finalstr
+        
+    
+    }
+    xhr.send()
+</script>
+
+{%endblock content%}
