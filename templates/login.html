@@ -39,7 +39,10 @@
         color: #fff;
         
       }
-  
+      
+      .skip_login{
+        width: 80%;
+      }
       .login_btn {
         width: 100%;
         background: #33ccff !important;
@@ -76,7 +79,6 @@
     <title>OTT</title>
   </head>
   <body>
-      {%include "components/header.html"%}
       
       <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
@@ -107,10 +109,20 @@
     
                   <div class="d-flex justify-content-center mt-3 login_container">
                      <input class="btn login_btn" type="submit" value="Login">
-                     </div>
+                  </div>
+
               </form>
-    
+             
             </div>
+            <div class="row">
+              <div class = "col-md-2 col-sm-2 ">
+              </div>
+              <div class = "col-md-10 col-sm-10 mx-auto ">
+                 <a class = "btn btn-primary skip_login" href="{% url 'home' %}">Skip Login</a>
+              </div>
+
+            </div>
+
     
             {% for message in messages %}
               <p id="messages">{{message}}</p>

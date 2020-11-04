@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from thumbnails.views import home, home_dyn, thumbnail_list, create_form, register_form, login_form, logOut
+from thumbnails.views import home, home_dyn, thumbnail_list, create_form, register_form, login_form, logOut, filter_data, edit_delete, upload
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
@@ -29,7 +30,10 @@ urlpatterns = [
     path('movie/<str:req_id>',home_dyn),
     path('register',register_form, name="register"),
     path('login',login_form, name="login"),
-    path('logout',logOut, name = 'logout')
+    path('logout',logOut, name = 'logout'),
+    path('filter',filter_data, name = 'filter'),
+    path('delete/<int:req_id>/',edit_delete , name = 'req_id'),
+    path('upload/',upload, name="upload")
     ] 
  
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
