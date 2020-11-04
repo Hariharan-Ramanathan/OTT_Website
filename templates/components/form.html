@@ -13,18 +13,18 @@
   </head>
   <body>
       {%include "components/header.html"%}
-    <div class = 'container'>
 
+   
+      <div class = 'container'>
             <div class="row mb-3 py-5 ">
                 <div class="col-md-4 mx-auto col-10">
-                    <form class='form' method="POST" action='/create-form'>{% csrf_token%}
+                    <form class='form' method="POST">{% csrf_token%}
                         <input type="hidden" value="/" name="next" />
-                        <textarea required = "required"class="form-control" name="content" placeholder="Text..."></textarea>
+                        <input type = "number" required = "required"class="form-control" name="rate" placeholder="rate/10..."></input>
                         <p class="py-3 text-center"><button type = "submit" class="btn btn-primary">Upload</button></p>
                     </form>
                 </div>
             </div>
-
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 

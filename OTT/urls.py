@@ -15,13 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from thumbnails.views import home, home_dyn, thumbnail_list, create_form
+from thumbnails.views import home, home_dyn, thumbnail_list, create_form, register_form, login_form, logOut
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
-    path('create-form',create_form),
+    path('',home, name="home"),
+    path("create-form/<int:req_id>",create_form, name='req_id'),
     path('all/',thumbnail_list),
     path('movie/<str:req_id>',home_dyn),
-]
+    path('register',register_form, name="register"),
+    path('login',login_form, name="login"),
+    path('logout',logOut, name = 'logout')
+    ] 
+ 
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
