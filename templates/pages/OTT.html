@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Blinker' rel='stylesheet'>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+{% load static %}
+<style>
+
+
+.parallax {
+  /* The image used */
+
+  background-image:linear-gradient(
+    rgba(233, 221, 202, 0.589),
+      rgba(0, 0, 0, 0.425)
+    ), url("https://i.pinimg.com/originals/8a/61/9a/8a619aff296d18610859b84bf9468611.jpg");
+
+  /* Set a specific height */
+  min-height: 600px; 
+   padding-top: 0%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  /* The image used */
+
+  background-image:linear-gradient(
+    rgba(233, 221, 202, 0.589),
+      rgba(0, 0, 0, 0.425)
+    ), url("https://wallpaperaccess.com/full/329633.jpg");
+
+  /* Set a specific height */
+  min-height: 600px; 
+   padding-top: 0%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax3 {
+  /* The image used */
+
+  background-image:linear-gradient(
+    rgba(233, 221, 202, 0.589),
+      rgba(0, 0, 0, 0.425)
+    ), url("https://wallpapercave.com/wp/wp2751453.jpg");
+
+  /* Set a specific height */
+  min-height: 600px; 
+   padding-top: 0%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.navbar{
+    margin-bottom: 0px !important;
+}
+
+.ott{
+    margin-top: 25%;
+    text-align: center;
+    font-size: xx-large;
+    color:rgb(243, 230, 230);
+    font-family: 'Aldrich';font-size: 280%;    
+}
+
+
+.ott-side{
+    margin-top: 3%;
+    margin-left: 0%;
+    text-align: center;
+    font-size: xx-large;
+    color:rgb(238, 229, 229);
+    font-family: 'Aldrich';font-size: 100%;    
+}
+
+.mid-ott{
+    margin-top: 8%;
+    font-family: 'Blinker';font-size: 42px;
+    color:rgb(238, 229, 229);
+}
+
+.mid-black{
+    height:300px;
+    background-color:black;
+    font-size:36px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .mid-black {height: 600px;}
+  }
+</style>
+
+</head>
+<body>
+{% include 'components/header.html'%}
+    <div class="parallax">
+        <div class="container">
+            <div class="ott">
+                <p>Let OTT Makes Your Day!</p>
+                <a class="btn btn-warning    " href="{% url 'home' %}" style="color: black;">Get Started</a>
+            </div>
+        </div>
+    </div>
+    
+  
+
+    <div class = "mid-black">
+            <div class="col-md-4 ">
+                <i class='fas fa-play-circle' style='font-size:450%;   color:rgb(235, 221, 221); margin-top: 15%; margin-left: 25%; '></i>
+            </div>
+            <div class="col-md-8 col-xs-8">
+                <p class = "mid-ott"> 100+ New Movies Each Day. </p>
+                <p>Register Now to get more discounts !!!</p>
+            </div>
+    </div>
+
+    <div class="parallax2">
+        <div class="container">
+            <div class="ott">
+                <p style="color: black;">Your Favourite Movies at Lower Cost</p>
+            </div>
+        </div>
+    </div>
+
+    <div class = "mid-black">
+        <div class="col-md-4 ">
+            <i class='fas fa-headphones-alt' style='font-size:450%;   color:rgb(235, 221, 221); margin-top: 15%; margin-left: 25%; '></i>
+        </div>
+        <div class="col-md-8 col-xs-8 content-mid">
+            <p class = "mid-ott"> Listen to free Music </p>
+            <p>Only for Registered Users!!! Offer Ending Soon</p>
+        </div>
+</div>
+
+    <div class="parallax3">
+        <div class="container">
+            <div class="ott">
+                <p>See Your SuperHeros Anywhere Anytime</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

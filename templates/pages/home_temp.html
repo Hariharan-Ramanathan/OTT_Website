@@ -12,14 +12,31 @@
     </div>
     <div class = 'row text-center' >
         <div class = 'col'>
+            <form method="GET" >
+            </form>
+        </div>
+    </div>
+    <div class = 'row text-center' >
+        <div class = 'col'>
             <h1>Filter result</h1>
         </div>
         <form method="GET">
             {{myfilter.form.as_p}}
-            <button type="submit">SUBMIT</button>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><button class = 'btn  btn-link'type = "submit" name="sort" value = "ascn_sort">Low to High</button></li>
+                  <li><button class = 'btn  btn-link'type = "submit" name="sort" value = "desc_sort">High to Low</button></li>
+                  <li><button class = 'btn  btn-link'type = "submit" name="sort" value = "date_sort">Recent Upload</button></li>
+                 </ul>
+                <button class ='btn btn-primary' type="submit">SUBMIT</button>
+
+            </div>
+
         </form>
-        
-    </div>
+       </div>
+
 {% for x in home_page %}
 
 <style>
@@ -50,13 +67,18 @@
                 <p>  <strong>Genre</strong>: {{x.genre}}      </p>  
                 <p>  <strong>Language</strong>: {{x.language}}  </p> 
                 <p>  <strong>Rate</strong>: {{x.avg_rate}}    / 10</p>
+                <p>  <strong>Uploaded Date</strong>: {{x.timestamp|date}} </p>
+
                 <a class='btn btn-primary' href = "create-form/{{x.id}}">Rate</a>
 
             {% if user.is_superuser %}
                 <a class='btn btn-danger' href = "delete/{{x.id}}">Delete</a>
             {% endif %}
-            </div>
             
+            </div>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+           {% endfor %}
         </div>
     </div>
 </div>
@@ -64,7 +86,6 @@
 
 
 {% endfor %}
-
 
 
 {% endblock content %}

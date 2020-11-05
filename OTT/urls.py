@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from thumbnails.views import home, home_dyn, thumbnail_list, create_form, register_form, login_form, logOut, filter_data, edit_delete, upload
+from thumbnails.views import home, home_dyn, thumbnail_list, create_form, register_form, login_form, logOut, filter_data, edit_delete, upload, front_page
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
@@ -33,7 +33,8 @@ urlpatterns = [
     path('logout',logOut, name = 'logout'),
     path('filter',filter_data, name = 'filter'),
     path('delete/<int:req_id>/',edit_delete , name = 'req_id'),
-    path('upload/',upload, name="upload")
+    path('upload/',upload, name="upload"),
+    path('OTT/',front_page, name='ott')
     ] 
  
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

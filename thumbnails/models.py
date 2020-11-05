@@ -15,18 +15,20 @@ class rating(models.Model):
     rate = models.IntegerField(null = True)
 
 class thumbnail(models.Model):
-    #rated_user = models.IntegerField(null = True)
+    user = models.ManyToManyField(User, related_name='rate', blank=True)
     image = models.FileField( blank=True, null=True)
     title = models.TextField(null = True)
     content = models.TextField(null=True)
     genre = models.CharField(max_length= 40, choices=GENRE_DROPDOWN)
     language = models.TextField(null = True)
     avg_rate = models.IntegerField(default = 0, null = True)
-
+    timestamp = models.DateTimeField(auto_now_add=False, auto_now=False, null=True)
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ['-id']      #for making last uploaded first
+
+
 
     

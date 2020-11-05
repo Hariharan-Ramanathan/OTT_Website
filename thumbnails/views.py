@@ -9,10 +9,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from .filter import Moviefilter
 
-def handle_uploaded_file(f):   
-    with open('media/images/'+f.name, 'wb+') as destination:   
-        for chunk in f.chunks(): 
-            destination.write(chunk)   
 
 @login_required(login_url='login')
 def create_form(request, req_id, *args, **kwargs):
@@ -25,29 +21,46 @@ def create_form(request, req_id, *args, **kwargs):
    # print(form)
     next_url = request.POST.get('next') or None
     if form.is_valid():
-        if ele.avg_rate != 0:
-            ele.avg_rate = (int(ele.avg_rate)  + form.cleaned_data['rate'])/2
-        else:
-            ele.avg_rate = form.cleaned_data['rate']
-        ele.rated_user = request.user.id
-        ele.save()
-        if next_url != None:
-            return redirect(next_url)
-        form = input_form()
+        if request.user in ele.user.all():
+            messages.error(request, 'Already rated')
+        else :
+            if form.cleaned_data['rate'] > 10:
+                messages.error(request, 'Value should be Lesser than 10')
+            else:
+                if ele.avg_rate != 0:
+                    ele.avg_rate = (int(ele.avg_rate)  + form.cleaned_data['rate'])/2
+                else:
+                    ele.avg_rate = form.cleaned_data['rate']
+                ele.user.add(request.user)
+                ele.rated_user = request.user.id
+                ele.save()
+                if next_url != None:
+                    return redirect(next_url)
+                form = input_form()
     return render(request, "components/form.html", context={"form":form})
 
 def home(request, *args, **kargs):
     #print(request.user)
     #return HttpResponse("<h1>Started</h1>")
+    
     a = thumbnail.objects.all()
-    home_page = [{"id" : x.id , "title": x.title, "image":x.image.url, "genre":x.genre, "language":x.language, "content" : x.content , "avg_rate" : x.avg_rate} for x in a]
+    
+    if request.method == 'GET':
+        if request.GET.get('sort')=='desc_sort':
+            a = thumbnail.objects.all().order_by('-avg_rate')
+        if request.GET.get('sort') == 'ascn_sort':
+            a = thumbnail.objects.all().order_by('avg_rate')
+        if request.GET.get('sort') == 'date_sort':
+            a = thumbnail.objects.all().order_by('-timestamp')
+        
+        home_page = [{"id" : x.id , "title": x.title, "image":x.image.url, "genre":x.genre, "language":x.language, "content" : x.content , "avg_rate" : x.avg_rate} for x in a]
 
-    myfilter  = Moviefilter(request.GET , queryset = a or None)
-    home_page = myfilter.qs
-    if myfilter == None:
-         messages.info(request,'Not Found')
-    else:
-        return render(request, "pages/home_temp.html",context={'home_page':home_page, 'myfilter':myfilter})
+        myfilter  = Moviefilter(request.GET , queryset = a or None)
+        home_page = myfilter.qs
+        if myfilter == None:
+             messages.info(request,'Not Found')
+        else:
+            return render(request, "pages/home_temp.html",context={'home_page':home_page, 'myfilter':myfilter})
 
 def register_form(request):
     if request.user.is_authenticated:
@@ -77,7 +90,7 @@ def login_form(request):
             user = authenticate(request, username = username, password = password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('ott')
             else:
                 messages.warning(request,'Incorrect Id or Password')
                 return redirect('login')
@@ -87,7 +100,7 @@ def login_form(request):
 
 def logOut(request):
     logout(request)
-    return redirect('home')
+    return redirect('ott')
 
 def filter_data(request):
     return render(request, 'basic-88/index.html')
@@ -106,6 +119,8 @@ def upload(request):
     form = new_movie_form()
     return render(request, "components/upload.html", context={'form':form})
 
+def front_page(request):
+    return render(request, 'pages/OTT.html')
 
 def home_dyn(request, req_id, *args, **kargs):
     data={

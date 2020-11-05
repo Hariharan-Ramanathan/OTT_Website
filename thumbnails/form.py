@@ -14,7 +14,7 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-
+    
 class new_movie_form(forms.ModelForm):
     class Meta:
         model = thumbnail
