@@ -24,17 +24,17 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home, name="home"),
-    path("create-form/<int:req_id>",create_form, name='req_id'),
+    path('',front_page, name="ott"),
+    path("OTT/create-form/<int:req_id>",create_form, name='req_id'),
     path('all/',thumbnail_list),
     path('movie/<str:req_id>',home_dyn),
     path('register',register_form, name="register"),
     path('login',login_form, name="login"),
     path('logout',logOut, name = 'logout'),
     path('filter',filter_data, name = 'filter'),
-    path('delete/<int:req_id>/',edit_delete , name = 'req_id'),
+    path('OTT/delete/<int:req_id>/',edit_delete , name = 'req_id'),
     path('upload/',upload, name="upload"),
-    path('OTT/',front_page, name='ott')
+    path('OTT/',home, name='home')
     ] 
  
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -8,6 +8,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from .filter import Moviefilter
+from django import template
+
+register = template.Library()
+@register.filter(name='add_css')
+def add_css(field, css):
+    return field.as_widget(attrs={"class":css})
+
 
 
 @login_required(login_url='login')
@@ -37,7 +44,7 @@ def create_form(request, req_id, *args, **kwargs):
                 if next_url != None:
                     return redirect(next_url)
                 form = input_form()
-    return render(request, "components/form.html", context={"form":form})
+    return render(request, "components/form.html", context={'ele':ele, 'form':form})
 
 def home(request, *args, **kargs):
     #print(request.user)

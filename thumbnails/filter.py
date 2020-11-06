@@ -1,4 +1,5 @@
 import django_filters
+from django import forms
 from .models import *
 
 CHOICE_FIELD=(
@@ -6,8 +7,16 @@ CHOICE_FIELD=(
     ('LTH', 'Low To High')
 )
 
+LANGUAGE_DROPDOWN=(
+    ('tamil', 'TAMIL'),
+    ('english', 'ENGLISH'),
+    ('telugu', 'TELUGU'),
+    ('hindi', 'HINDI'),
+    ('malayalam', 'MALAYALAM'),
+    ('urdhu', 'URDHU')
+)
+
 class Moviefilter(django_filters.FilterSet):
-    sort =  forms.ChoiceField(choices=CHOICE_FIELD)
     class Meta:
         model = thumbnail
         fields = ['language', 'genre']

@@ -1,3 +1,4 @@
+{% load widget_tweaks %}
 
 <!doctype html>
 <html lang="en">
@@ -16,13 +17,22 @@
       .movie_form{
           padding-left: 35%;
       }
+      body{
+        background-color: black !important;
+      }
+      .jumbotron{
+        border-radius: 2% !important;
+        background-image: url("https://i.pinimg.com/originals/ba/4a/17/ba4a17edb4af2e2fe8f8843d7a3fa8c1.jpg") !important;
+        background-position: center;
+        background-size: 100%;
+      }
   </style>
   <body>
       {% include 'components/header.html' %}
   <form method="POST" action="" enctype="multipart/form-data">
       {% csrf_token %}
-        <div class="container jumbotron ">
-            <div class="form-group  movie_form">
+        <div class="container jumbotron " style="color: white;">
+            <div class="form-group  movie_form" >
               <label for="exampleInputEmail1">Title</label>
                 <div class="input-group" name="title">
                  {{form.title}}
@@ -54,7 +64,7 @@
                   </div>
             </div>
 
-                  <p class="py-3 text-center sub"><button type = "submit" class="btn btn-primary">Submit </button></p>
+                  <p class="py-3 text-center sub"><button type = "submit" class="btn btn-warning" style="color: black;">Submit </button></p>
 
         </div>
   </form>

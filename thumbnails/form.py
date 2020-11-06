@@ -5,6 +5,15 @@ from django.contrib.auth.models import User
 
 MAX_RATE = 10
 
+LANGUAGE_DROPDOWN = (
+    ('Tamil', 'TAMIL'),
+    ('English', 'ENGLISH'),
+    ('Telugu', 'TELUGU'),
+    ('Hindi', 'HINDI'),
+    ('Malayalam', 'MALAYALAM'),
+    ('Urdhu', 'URDHU')
+)
+
 class input_form(forms.ModelForm):
     class Meta:
         model = rating
@@ -20,10 +29,9 @@ class new_movie_form(forms.ModelForm):
         model = thumbnail
         fields = ['title', 'image', 'content', 'genre', 'language']
         widgets = {
-            'title' : forms.Textarea(attrs={'rows':1.5, 'cols':40}),
-            'content' : forms.Textarea(attrs={'rows':3, 'cols':40}),
-            'language' : forms.Textarea(attrs={'rows':1.5, 'cols':40}),
-            #'genre' : forms.Textarea(attrs={'rows':1.5, 'cols':40}),
+            'title' : forms.TextInput(attrs={'class':'form-control','rows':1.5, 'cols':40}),
+            'content' : forms.Textarea(attrs={'class':'form-control' ,'rows':3, 'cols':40}),
+            'language' : forms.Select(attrs={'class':'form-control'}),
+            'genre' : forms.Select(attrs={'class':'form-control'}),
             #'avg_rate' : forms.Textarea(attrs={'rows':1.5, 'cols':40}),
-
         }

@@ -23,8 +23,7 @@
       <a style="font-family: 'Faster One';font-size: 20px;" class="navbar-brand" href="{% url 'ott' %}">OTT</a>
     </div>
     <ul class="nav navbar-nav" style="font-family: 'Freehand';font-size: 15px;">
-      <li class=""><a href="/">All movies</a></li>
-      <li><a href="{% url 'filter'%}">Filter</a></li>
+      <li class=""><a href="/OTT">All movies</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right" style="font-family: 'Freehand';font-size: 15px;">
       {% if user.is_authenticated %}

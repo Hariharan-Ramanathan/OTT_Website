@@ -1,13 +1,69 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
 
 {% block content %}
 
+<link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet'>
+
+<style>
+    .try{
+        color: white;
+    }
+    .jumbotron{
+        background-image:linear-gradient(
+         rgba(12, 12, 11, 0.959),
+         rgba(0, 0, 0, 0.425)
+         ), url("https://www.itl.cat/pngfile/big/46-465731_streaming-movies.jpg");
+        background-position: center;
+        background-size: 120%; 
+        font-family: 'Armata';font-size: 22px;
+        border-radius: 2% !important;
+
+    }    
+    body{
+        background-color:rgb(0, 0, 0) ;
+    }
+    .thumb{
+        padding-top:  4%;
+        
+    }
+    .thumb2{
+        padding-bottom: 2%;
+        border-bottom: 1px solid lightgray;
+
+    }
+    .btn-warning{
+    
+        background-color: rgba(20, 20, 19, 0.952) !important;
+    }
+    #input-filter{
+            border-radius:5% !important;
+    }
+</style>
+
+<div class="jumbotron" style="margin-bottom: 5%;">
     <div class = 'row text-center' >
         <div class = 'col'>
-            <h1>Welcome to OTT</h1>
+            <h1 style="color: cornsilk;">Welcome to OTT</h1>
         </div>
         {% if user.is_superuser %}
-        <a class='btn btn-primary' href = "{% url 'upload' %}">Add new Movie</a>
+        <a class='btn btn-warning'  href = "{% url 'upload' %}">Add new Movie</a>
         {% endif%}
     </div>
     <div class = 'row text-center' >
@@ -18,39 +74,54 @@
     </div>
     <div class = 'row text-center' >
         <div class = 'col'>
-            <h1>Filter result</h1>
+            <h1 style="color: cornsilk; font-size: 150%; margin-top: 5%; margin-bottom: 3%;" >Need Filters ?</h1>
         </div>
         <form method="GET">
-            {{myfilter.form.as_p}}
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort
+                <span style="color: white;">{{myfilter.form.language.label}}</span>
+                {{myfilter.form.language}}
+                <span style="color: white;">{{myfilter.form.genre.label}}</span>
+                {{myfilter.form.genre}}
+
+                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Sort
                 <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><button class = 'btn  btn-link'type = "submit" name="sort" value = "ascn_sort">Low to High</button></li>
-                  <li><button class = 'btn  btn-link'type = "submit" name="sort" value = "desc_sort">High to Low</button></li>
-                  <li><button class = 'btn  btn-link'type = "submit" name="sort" value = "date_sort">Recent Upload</button></li>
+                <ul class="dropdown-menu text-center">
+                  <li><button class = 'btn  btn-link' style="color: black;" type = "submit" name="sort" value = "ascn_sort">Low to High</button></li>
+                  <li><button class = 'btn  btn-link' style="color: black;" type = "submit" name="sort" value = "desc_sort">High to Low</button></li>
+                  <li><button class = 'btn  btn-link' style="color: black;" type = "submit" name="sort" value = "date_sort">Recent Upload</button></li>
                  </ul>
-                <button class ='btn btn-primary' type="submit">SUBMIT</button>
+                <button class ='btn btn-warning' type="submit">SUBMIT</button>
 
             </div>
 
+
         </form>
        </div>
+</div>
+ 
 
 {% for x in home_page %}
+<div class="container col-lg-5 text-center" >
+    <div class="card" style="width:400px; border: white solid 2px; border-radius: 2%; margin-left: 25%; margin-bottom:10% ;">
+      <img class="card-img-top" src="{{x.image.url}}" alt="Card image" style="width:100%">
+      <div class="card-body" style="color: white; margin-left: 2%; margin-bottom: 2%;">
+        <h4 class="card-title">{{x.title}} </h4>
+        <h5 class="card-title"> Language : {{x.language}} </h5>
+        <h5 class="card-title"> Genre : {{x.genre}}</h5>
+        <h5 class="card-title"> Rate : {{x.avg_rate}} </h5>
+        <h5 class="card-title"> Uploaded Date {{x.timestamp|date}}</h5>
+        <a href="create-form/{{x.id}}" class="btn btn-warning">Rate</a>
+        {% if user.is_superuser %}
+            <a class='btn btn-danger' href = "delete/{{x.id}}" style="background-color: black;">Delete</a>
+        {% endif %}
+    
+      </div>
+    </div>    
+</div>
 
-<style>
-    .thumb{
-        padding-top:  4%;
-        
-    }
-    .thumb2{
-        padding-bottom: 2%;
-        border-bottom: 1px solid lightgray;
+{% endfor %}
 
-    }
-</style>
-
+ <!-- 
 <div class = 'row thumb'>
     <div class = 'col-md-1 '></div>
     <div class = 'col-12 col-md-8 mx-auto border-bottom py-5 mb-4'> 
@@ -61,7 +132,7 @@
                 </div>
             </div>
             
-            <div class='col-md-4'>
+            <div class='col-md-4' style="color: white;">
                 <p>  <strong>Title</strong>: {{ x.title }}     </p>
                 <p>  <strong>Content</strong>: {{x.content}} </p>  
                 <p>  <strong>Genre</strong>: {{x.genre}}      </p>  
@@ -76,16 +147,13 @@
             {% endif %}
             
             </div>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-           {% endfor %}
         </div>
     </div>
 </div>
 
 
+-->
 
-{% endfor %}
 
 
 {% endblock content %}
