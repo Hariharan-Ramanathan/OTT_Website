@@ -24,6 +24,8 @@ OTT is an online platform clone for releasing and watching new movies. As of now
             $ git clone https://github.com/Hariharan-Ramanathan/OTT_Website.git
     5) Enter into project Folder and create a Virtual Environment 
             $ python3 -m pip install pipenv --upgrade
+                        or
+            $ python -m pip install pipenv --upgrade
     6) Install python 3.8 and django in Virtual environment
             $ pipenv install --python 3.6 django==2.2
     7) Enter into Virtual Environment
