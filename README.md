@@ -27,7 +27,7 @@ OTT is an online platform clone for releasing and watching new movies. As of now
                         or
             $ python -m pip install pipenv --upgrade
     6) Install python 3.8 and django in Virtual environment
-            $ pipenv install --python 3.6 django==2.2
+            $ pipenv install --python 3.8 django==2.2
     7) Enter into Virtual Environment
             $ pipenv shell
     8) Install django-filter inside virtual environment
