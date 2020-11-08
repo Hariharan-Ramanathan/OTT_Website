@@ -38,14 +38,14 @@ OTT is an online platform clone for releasing and watching new movies. As of now
             $ pipenv shell
     2)      $ ./manage.py runserver 
                     or
-            $ python3 manage.py runserver
+            $ python manage.py runserver
             
 # Create Admin 
      1) Enter into Virtual Enviromnent
             $ pipenv shell
      2)     $ ./manage.py createsuperuser
                      or
-            $ python3 manage.py createsuperuser
+            $ python manage.py createsuperuser
 
 # Admin Credentials
     - Admin 
