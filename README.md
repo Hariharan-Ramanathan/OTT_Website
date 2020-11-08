@@ -5,7 +5,8 @@ OTT is an online platform clone for releasing and watching new movies. As of now
 # Installation
     1) Install Python 3.8
         Linux   : $ sudo apt install python3.8
-        Windows :- Download Python 3.8 from the website given below and after installing it add its path to environment variable                                    - https://www.python.org/downloads/windows/
+        Windows :- Download Python 3.8 from the website given below and after installing it add its path to environment variable
+                    https://www.python.org/downloads/windows/
         MaxOs   : https://www.python.org/downloads/mac-osx/
         
     2) Install Pip
