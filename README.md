@@ -36,13 +36,18 @@ OTT is an online platform clone for releasing and watching new movies. As of now
     2)      $ ./manage.py runserver 
                     or
             $ python3 manage.py runserver
-    
+            
 # Create Admin 
      1) Enter into Virtual Enviromnent
             $ pipenv shell
      2)     $ ./manage.py createsuperuser
                      or
             $ python3 manage.py createsuperuser
+
+# Admin Credentials
+    - Admin 
+        Username : harish
+        Password : Malli1970
 
 # User and Admin        
 - User
@@ -56,6 +61,5 @@ OTT is an online platform clone for releasing and watching new movies. As of now
     4) Can rate a movie(only once),
     5) Can sort and filter according to their choice
     
-
     
   
