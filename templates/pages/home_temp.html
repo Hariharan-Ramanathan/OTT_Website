@@ -101,15 +101,16 @@
  
 
 {% for x in home_page %}
-<div class="container col-lg-5 text-center" >
+<div class="container col-lg-5  text-center" >
     <div class="card" style="width:400px; border: white solid 2px; border-radius: 2%; margin-left: 25%; margin-bottom:10% ;">
-      <img class="card-img-top" src="{{x.image.url}}" alt="Card image" style="width:100%">
+      <img class="card-img-top" src="{{x.image.url}}" alt="Card image" style="width:100%; height: 250px;">
       <div class="card-body" style="color: white; margin-left: 2%; margin-bottom: 2%;">
         <h4 class="card-title">{{x.title}} </h4>
         <h5 class="card-title"> Language : {{x.language}} </h5>
         <h5 class="card-title"> Genre : {{x.genre}}</h5>
         <h5 class="card-title"> Rate : {{x.avg_rate}} </h5>
-        <h5 class="card-title"> Uploaded Date {{x.timestamp|date}}</h5>
+        <h5 class="card-title"> Content : {{x.content}} </h5>
+        <h5 class="card-title"> Uploaded Date : {{x.timestamp|date}}</h5>
         <a href="create-form/{{x.id}}" class="btn btn-warning">Rate</a>
         {% if user.is_superuser %}
             <a class='btn btn-danger' href = "delete/{{x.id}}" style="background-color: black;">Delete</a>
