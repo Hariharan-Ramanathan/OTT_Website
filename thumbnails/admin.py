@@ -1,6 +1,6 @@
 from django.forms import TextInput, Textarea
 from django.contrib import admin
-from .models import thumbnail
+from .models import thumbnail, rating
 from django.db import models
 
 class OTTAdmin(admin.ModelAdmin):
@@ -16,3 +16,4 @@ class thumbnail_admin(admin.ModelAdmin):
 # Register your models here.
 
 admin.site.register(thumbnail)
+admin.site.register(rating)

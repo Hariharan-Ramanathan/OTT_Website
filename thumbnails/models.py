@@ -22,8 +22,6 @@ LANGUAGE_DROPDOWN = (
     ('Urdhu', 'URDHU')
 )
 
-class rating(models.Model):
-    rate = models.IntegerField(null = True)
 
 class thumbnail(models.Model):
     user = models.ManyToManyField(User, related_name='rate', blank=True)
@@ -40,6 +38,9 @@ class thumbnail(models.Model):
     class Meta:
         ordering = ['-id']      #for making last uploaded first
 
+class rating(models.Model):
+    post = models.ForeignKey(thumbnail, related_name="user_rate" ,on_delete= models.CASCADE, null = True)
+    rate = models.IntegerField(null = True)
 
 
     

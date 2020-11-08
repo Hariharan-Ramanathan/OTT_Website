@@ -25,7 +25,7 @@ def create_form(request, req_id, *args, **kwargs):
          return redirect(settings.LOGIN_URL)
  
     form = input_form(request.POST or None)
-   # print(form)
+    print(form)
     next_url = request.POST.get('next') or None
     if form.is_valid():
         if request.user in ele.user.all():
